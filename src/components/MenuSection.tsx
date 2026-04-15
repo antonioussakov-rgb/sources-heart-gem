@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
-import dish1 from "@/assets/dish-1.jpg";
-import dish2 from "@/assets/dish-2.jpg";
+import platPate from "@/assets/plat-pate.jpg";
+import platBrick from "@/assets/plat-brick.jpg";
+import platDessertFruits from "@/assets/plat-dessert-fruits.jpg";
+import platSteakFrites from "@/assets/plat-steak-frites.jpg";
+import platMijote from "@/assets/plat-mijoté.jpg";
+import platChevreChaud from "@/assets/plat-chevre-chaud.jpg";
+import platIleFlottante from "@/assets/plat-ile-flottante.jpg";
 
 const menuItems = {
   entrées: [
@@ -26,6 +31,16 @@ const menuItems = {
     "Crumble aux Poires",
   ],
 };
+
+const dishPhotos = [
+  { src: platChevreChaud, alt: "Toast de Chèvre Chaud" },
+  { src: platBrick, alt: "Brick Pommes Chèvre et Chorizo" },
+  { src: platPate, alt: "Pâté de Campagne Maison" },
+  { src: platSteakFrites, alt: "Faux Filet Bleue d'Ail" },
+  { src: platMijote, alt: "Plat mijoté maison" },
+  { src: platDessertFruits, alt: "Dessert aux fruits rouges" },
+  { src: platIleFlottante, alt: "Île Flottante" },
+];
 
 const MenuSection = () => {
   return (
@@ -73,39 +88,29 @@ const MenuSection = () => {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="overflow-hidden rounded-sm"
-          >
-            <img
-              src={dish1}
-              alt="Navarin d'agneau"
-              loading="lazy"
-              width={800}
-              height={800}
-              className="w-full h-72 object-cover hover:scale-105 transition-transform duration-700"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="overflow-hidden rounded-sm"
-          >
-            <img
-              src={dish2}
-              alt="Moelleux au chocolat"
-              loading="lazy"
-              width={800}
-              height={800}
-              className="w-full h-72 object-cover hover:scale-105 transition-transform duration-700"
-            />
-          </motion.div>
+        {/* Photo grid with real dishes */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          {dishPhotos.map((photo, idx) => (
+            <motion.div
+              key={photo.alt}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className={`overflow-hidden rounded-sm ${
+                idx === 0 ? "col-span-2 row-span-2" : ""
+              }`}
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                className={`w-full object-cover hover:scale-105 transition-transform duration-700 ${
+                  idx === 0 ? "h-full min-h-[300px]" : "h-48 md:h-56"
+                }`}
+              />
+            </motion.div>
+          ))}
         </div>
 
         <p className="text-center font-body text-muted-foreground text-sm mt-8 italic">
