@@ -35,7 +35,14 @@ const InfoSection = () => {
             {
               icon: Clock,
               title: "Horaires",
-              lines: ["Ouvert du jeudi au dimanche", "Service midi et soir"],
+              lines: [
+                "Lun : 09:00–14:00",
+                "Mar – Mer : Fermé",
+                "Jeu : 09:00–14:00",
+                "Ven : 09:00–14:00 · 17:30–21:00",
+                "Sam : 09:00–14:00 · 18:00–21:00",
+                "Dim : 10:00–13:00",
+              ],
             },
             {
               icon: Utensils,
