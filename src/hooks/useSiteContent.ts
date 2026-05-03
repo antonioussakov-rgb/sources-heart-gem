@@ -17,7 +17,7 @@ export function useSiteContent(): SiteContent {
         if (mounted && data?.data) setContent(mergeSiteContent(data.data));
       });
 
-    const channel = supabase.channel("site_content_changes");
+    const channel = supabase.channel(`site_content_changes_${Math.random().toString(36).slice(2)}`);
     channel
       .on(
         "postgres_changes" as any,
