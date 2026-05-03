@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Utensils } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const InfoSection = () => {
+  const c = useSiteContent();
   return (
     <section className="py-24 md:py-32 bg-auberge-forest px-6" id="infos">
       <div className="max-w-5xl mx-auto">
@@ -25,24 +27,17 @@ const InfoSection = () => {
             {
               icon: MapPin,
               title: "Adresse",
-              lines: ["15 Rue de Chaintréauville", "77140 Saint-Pierre-lès-Nemours"],
+              lines: [c.addressLine1, c.addressLine2],
             },
             {
               icon: Phone,
               title: "Réservation",
-              lines: ["01 64 29 11 40", "Réservation conseillée"],
+              lines: [c.phone, "Réservation conseillée"],
             },
             {
               icon: Clock,
               title: "Horaires",
-              lines: [
-                "Lun : 09:00–14:00",
-                "Mar – Mer : Fermé",
-                "Jeu : 09:00–14:00",
-                "Ven : 09:00–14:00 · 17:30–21:00",
-                "Sam : 09:00–14:00 · 18:00–21:00",
-                "Dim : 10:00–13:00",
-              ],
+              lines: c.hours.map((h) => `${h.day} : ${h.value}`),
             },
             {
               icon: Utensils,
@@ -79,7 +74,7 @@ const InfoSection = () => {
           className="mt-16 text-center"
         >
           <a
-            href="tel:0164291140"
+            href={`tel:${c.phoneHref}`}
             className="inline-flex items-center gap-2 px-10 py-4 bg-auberge-burgundy text-primary-foreground font-body tracking-wider uppercase text-sm rounded-sm hover:bg-auberge-burgundy/90 transition-colors"
           >
             <Phone className="w-4 h-4" />
