@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import terrasseImage from "@/assets/terrasse.jpg";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const AboutSection = () => {
+  const c = useSiteContent();
   return (
     <section className="py-24 md:py-32 px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
@@ -12,29 +13,17 @@ const AboutSection = () => {
           transition={{ duration: 0.8 }}
         >
           <p className="font-body text-auberge-gold tracking-[0.3em] uppercase text-xs mb-4">
-            Notre histoire
+            {c.aboutTagline}
           </p>
           <h2 className="font-display text-3xl md:text-5xl font-medium text-foreground mb-6 leading-tight">
-            Une pépite
+            {c.aboutTitleLine1}
             <br />
-            <span className="italic font-normal text-auberge-burgundy">comme on les aime</span>
+            <span className="italic font-normal text-auberge-burgundy">{c.aboutTitleLine2}</span>
           </h2>
           <div className="space-y-4 font-body text-muted-foreground leading-relaxed font-light">
-            <p>
-              Nichée au cœur de Saint-Pierre-lès-Nemours, L'Auberge des Sources vous accueille
-              dans une ambiance chaleureuse et authentique. Derrière sa façade discrète se cache
-              une véritable pépite de la gastronomie française.
-            </p>
-            <p>
-              Notre chef travaille exclusivement des produits frais et de saison, composant une
-              carte courte mais savoureuse qui évolue au fil des mois. Chaque assiette est une
-              invitation au voyage gustatif, sublimée par une sélection de vins soigneusement
-              choisie.
-            </p>
-            <p>
-              Terrasse, cocktails d'exception et menu enfant — un lieu pour toutes les occasions,
-              des déjeuners en famille aux dîners à la bougie.
-            </p>
+            {c.aboutParagraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
 
           <div className="mt-8 flex gap-12">
@@ -58,7 +47,7 @@ const AboutSection = () => {
         >
           <div className="absolute -inset-4 bg-auberge-warm rounded-sm -z-10" />
           <img
-            src={terrasseImage}
+            src={c.photos.terrasse}
             alt="La terrasse de L'Auberge des Sources"
             loading="lazy"
             width={1200}

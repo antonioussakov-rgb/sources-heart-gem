@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const Navbar = () => {
+  const c = useSiteContent();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -48,7 +50,7 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="tel:0164291140"
+            href={`tel:${c.phoneHref}`}
             className="inline-flex items-center gap-2 px-5 py-2 bg-auberge-burgundy text-primary-foreground font-body tracking-wider uppercase text-xs rounded-sm hover:bg-auberge-burgundy/90 transition-colors"
           >
             <Phone className="w-3.5 h-3.5" />
@@ -84,7 +86,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="tel:0164291140"
+                href={`tel:${c.phoneHref}`}
                 className="inline-flex items-center gap-2 px-5 py-2 bg-auberge-burgundy text-primary-foreground font-body tracking-wider uppercase text-xs rounded-sm"
               >
                 <Phone className="w-3.5 h-3.5" />

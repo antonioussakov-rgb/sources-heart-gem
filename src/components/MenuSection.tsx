@@ -1,11 +1,5 @@
 import { motion } from "framer-motion";
-import platPate from "@/assets/plat-pate.jpg";
-import platBrick from "@/assets/plat-brick.jpg";
-import platDessertFruits from "@/assets/plat-dessert-fruits.jpg";
-import platSteakFrites from "@/assets/plat-steak-frites.jpg";
-import platMoelleux from "@/assets/plat-moelleux-chocolat.jpg";
-import platChevreChaud from "@/assets/plat-chevre-chaud.jpg";
-import platIleFlottante from "@/assets/plat-ile-flottante.jpg";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const menuItems = {
   entrées: [
@@ -32,17 +26,9 @@ const menuItems = {
   ],
 };
 
-const dishPhotos = [
-  { src: platChevreChaud, alt: "Toast de Chèvre Chaud" },
-  { src: platBrick, alt: "Brick Pommes Chèvre et Chorizo" },
-  { src: platPate, alt: "Pâté de Campagne Maison" },
-  { src: platSteakFrites, alt: "Faux Filet Bleue d'Ail" },
-  { src: platMoelleux, alt: "Moelleux au Chocolat" },
-  { src: platDessertFruits, alt: "Dessert aux fruits rouges" },
-  { src: platIleFlottante, alt: "Île Flottante" },
-];
-
 const MenuSection = () => {
+  const c = useSiteContent();
+  const dishPhotos = c.photos.dishes;
   return (
     <section className="py-24 md:py-32 bg-auberge-warm px-6" id="carte">
       <div className="max-w-6xl mx-auto">

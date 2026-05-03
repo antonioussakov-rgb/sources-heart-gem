@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
-import heroImage from "@/assets/hero-auberge.jpg";
 import { Phone, MapPin, Star } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const HeroSection = () => {
+  const c = useSiteContent();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src={heroImage}
+          src={c.photos.hero}
           alt="L'Auberge des Sources - Salle de restaurant"
           width={1920}
           height={1080}
@@ -23,7 +24,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8 }}
           className="font-body text-auberge-gold tracking-[0.3em] uppercase text-sm mb-6"
         >
-          Restaurant · Saint-Pierre-lès-Nemours
+          {c.heroTagline}
         </motion.p>
 
         <motion.h1
@@ -32,9 +33,9 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-display text-5xl md:text-7xl lg:text-8xl font-medium text-primary-foreground mb-6 leading-tight"
         >
-          L'Auberge
+          {c.heroTitleLine1}
           <br />
-          <span className="italic font-normal">des Sources</span>
+          <span className="italic font-normal">{c.heroTitleLine2}</span>
         </motion.h1>
 
         <motion.div
@@ -60,8 +61,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="font-body text-primary-foreground/70 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed"
         >
-          Cuisine traditionnelle française, produits frais et de saison,
-          dans une ambiance chaleureuse et familiale.
+          {c.heroSubtitle}
         </motion.p>
 
         <motion.div
@@ -71,14 +71,14 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <a
-            href="tel:0164291140"
+            href={`tel:${c.phoneHref}`}
             className="inline-flex items-center gap-2 px-8 py-4 bg-auberge-burgundy text-primary-foreground font-body tracking-wider uppercase text-sm rounded-sm hover:bg-auberge-burgundy/90 transition-colors"
           >
             <Phone className="w-4 h-4" />
-            Réserver — 01 64 29 11 40
+            Réserver — {c.phone}
           </a>
           <a
-            href="https://maps.google.com/?q=15+Rue+de+Chaintréauville+77140+Saint-Pierre-lès-Nemours"
+            href={`https://maps.google.com/?q=${encodeURIComponent(c.addressLine1 + " " + c.addressLine2)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 border border-primary-foreground/30 text-primary-foreground font-body tracking-wider uppercase text-sm rounded-sm hover:bg-primary-foreground/10 transition-colors"
