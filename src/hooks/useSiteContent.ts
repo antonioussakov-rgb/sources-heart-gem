@@ -17,10 +17,10 @@ export function useSiteContent(): SiteContent {
         if (mounted && data?.data) setContent(mergeSiteContent(data.data));
       });
 
-    const channel = supabase
-      .channel("site_content_changes")
+    const channel = supabase.channel("site_content_changes");
+    channel
       .on(
-        "postgres_changes",
+        "postgres_changes" as any,
         { event: "*", schema: "public", table: "site_content" },
         (payload: any) => {
           if (payload.new?.data) setContent(mergeSiteContent(payload.new.data));
