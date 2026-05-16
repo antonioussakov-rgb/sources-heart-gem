@@ -69,30 +69,36 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-t border-border"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed inset-0 z-40 bg-foreground/80 backdrop-blur-md flex flex-col items-center justify-center gap-10"
           >
-            <div className="px-6 py-6 space-y-4">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block font-body text-sm tracking-wider uppercase text-foreground/70 hover:text-foreground"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href={`tel:${c.phoneHref}`}
-                className="inline-flex items-center gap-2 px-5 py-2 bg-auberge-burgundy text-primary-foreground font-body tracking-wider uppercase text-xs rounded-sm"
+            {links.map((link, i) => (
+              <motion.a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + i * 0.08 }}
+                className="font-body text-lg tracking-[0.2em] uppercase text-primary-foreground/90 hover:text-primary-foreground"
               >
-                <Phone className="w-3.5 h-3.5" />
-                Réserver
-              </a>
-            </div>
+                {link.label}
+              </motion.a>
+            ))}
+            <motion.a
+              href={`tel:${c.phoneHref}`}
+              onClick={() => setMobileOpen(false)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + links.length * 0.08 }}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-auberge-burgundy text-primary-foreground font-body tracking-[0.2em] uppercase text-xs rounded-sm hover:bg-auberge-burgundy/90"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              Réserver
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>
