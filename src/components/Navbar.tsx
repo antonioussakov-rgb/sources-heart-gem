@@ -73,6 +73,7 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
+            onClick={() => setMobileOpen(false)}
             className="md:hidden fixed inset-0 z-40 bg-foreground/80 backdrop-blur-md flex flex-col items-center justify-center gap-10"
           >
             {links.map((link, i) => (
