@@ -76,6 +76,13 @@ const Navbar = () => {
             onClick={() => setMobileOpen(false)}
             className="md:hidden fixed inset-0 z-40 bg-foreground/80 backdrop-blur-md flex flex-col items-center justify-center gap-10"
           >
+            <button
+              onClick={(e) => { e.stopPropagation(); setMobileOpen(false); }}
+              aria-label="Fermer le menu"
+              className="absolute top-6 right-6 text-primary-foreground/80 hover:text-primary-foreground"
+            >
+              <X className="w-7 h-7" />
+            </button>
             {links.map((link, i) => (
               <motion.a
                 key={link.href}
